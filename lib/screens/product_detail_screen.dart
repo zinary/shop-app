@@ -12,37 +12,52 @@ class ProductDetailScreen extends StatelessWidget {
         Provider.of<Products>(context).findItemById(productId);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(loadedProduct.title),
-      ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height * 0.4,
-            width: double.infinity,
-            child: Image.network(
-              loadedProduct.imageUrl,
-              fit: BoxFit.cover,
+      // appBar: AppBar(
+      //   title: Text(loadedProduct.title),
+      // ),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 300,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(loadedProduct.title),
+              background: Hero(
+                tag: loadedProduct.id,
+                child: Image.network(
+                  loadedProduct.imageUrl,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 10),
-            child: Text(
-              loadedProduct.title,
-              style: TextStyle(
-                  // color: Colors.white,
-                  fontSize: 20),
-              softWrap: true,
-              textAlign: TextAlign.center,
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    loadedProduct.title,
+                    style: TextStyle(
+                        // color: Colors.white,
+                        fontSize: 20),
+                    softWrap: true,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Text(
+                  loadedProduct.description,
+                  style: TextStyle(
+                      // color: Colors.white,
+                      fontSize: 15),
+                  softWrap: true,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 800,
+                )
+              ],
             ),
-          ),
-          Text(
-            loadedProduct.description,
-            style: TextStyle(
-                // color: Colors.white,
-                fontSize: 15),
-            softWrap: true,
-            textAlign: TextAlign.center,
           ),
         ],
       ),

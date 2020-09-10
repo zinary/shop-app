@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_app/helpers/custom_route.dart';
 import '../providers/auth.dart';
 import '../screens/orders_screen.dart';
 import '../screens/user_products_screen.dart';
@@ -31,13 +32,16 @@ class MyDrawer extends StatelessWidget {
               height: 10,
             ),
             ListTile(
-              title: Text('Orders'),
-              leading: Icon(Icons.shopping_basket),
-              onTap: () {
-                Navigator.of(context)
-                    .pushReplacementNamed(OrdersScreen.routeName);
-              },
-            ),
+                title: Text('Orders'),
+                leading: Icon(Icons.shopping_basket),
+                onTap: () {
+                  Navigator.of(context)
+                      .pushReplacementNamed(OrdersScreen.routeName);
+
+                  // Navigator.of(context).pushReplacement(CustomRoute(
+                  //   builder: (context) => OrdersScreen(),
+                  // ));
+                }),
             Divider(),
             ListTile(
               title: Text('Manage Products'),
